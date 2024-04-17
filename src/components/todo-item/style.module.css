@@ -1,0 +1,36 @@
+.item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 60px;
+  padding: 10px 10px 10px 16px;
+  background-color: var(--white);
+  box-shadow: var(--shadow);
+  border-radius: 15px;
+}
+
+.completed > button > img {
+  width: 30px;
+  height: 30px;
+}
+
+.title {
+  font-size: 1rem;
+}
+
+.title_completed {
+  text-decoration: line-through;
+  opacity: .8;
+  font-size: 1rem;
+}
+
+.remove {
+  margin-left: auto;
+  padding-right: 20px;
+}
+
+.remove > button > img {
+  width: 25px;
+  height: 25px;
+}

@@ -1,0 +1,29 @@
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.options {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.button {
+  padding: 4px 8px;
+}
+
+.button_active {
+  padding: 4px 8px;
+  border: 1px solid var(--gray-500);
+}
