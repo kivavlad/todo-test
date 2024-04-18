@@ -27,3 +27,25 @@
   padding: 4px 8px;
   border: 1px solid var(--gray-500);
 }
+
+@media screen and (max-width: 600px) {
+  .controls {
+    position: relative;
+    height: 80px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .counter {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .clear {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}

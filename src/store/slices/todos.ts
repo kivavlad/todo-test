@@ -15,13 +15,13 @@ const todoSlice = createSlice({
   initialState,
   reducers: {
     // Создание новой todo
-    create(state, actions: PayloadAction<string>) {
+    createTodo(state, actions: PayloadAction<string>) {
       state.list = [...state.list, {id: generateCode(), title: actions.payload, completed: false}];
     },
 
     // Переключатель выполнения todo по id
     toggleComplete(state, action: PayloadAction<number>) {
-      const toggleTodo = state.list.find((todo) => todo.id === action.payload);
+      const toggleTodo = state.list.find(todo => todo.id === action.payload);
       if (toggleTodo) {
         toggleTodo.completed = !toggleTodo?.completed;
       }
@@ -29,15 +29,15 @@ const todoSlice = createSlice({
 
     // Удаление todo по id 
     removeTodo(state, action: PayloadAction<number>) {
-      state.list = state.list.filter((todo) => todo.id !== action.payload);
+      state.list = state.list.filter(todo => todo.id !== action.payload);
     },
 
     // Удаление всех выполненных todo
     clearCompleted(state) {
-      state.list = state.list.filter((todo) => todo.completed !== true);
+      state.list = state.list.filter(todo => todo.completed !== true);
     }
   }
 })
 
-export const {create, toggleComplete, removeTodo, clearCompleted} = todoSlice.actions;
+export const {createTodo, toggleComplete, removeTodo, clearCompleted} = todoSlice.actions;
 export default todoSlice.reducer;

@@ -5,11 +5,11 @@ import styles from './style.module.css';
 interface IProps {
   total: number;
   filter: string;
-  handleCLick: (arg: string) => void;
-  clear: () => void;
+  setFilter: (arg: string) => void;
+  onClear: () => void;
 }
 
-const Controls: React.FC<IProps> = ({total, filter, handleCLick, clear}) => {
+const Controls: React.FC<IProps> = ({total, filter, setFilter, onClear}) => {
   const variants = {one: 'item', few: 'items', many: 'items'};
 
   return (
@@ -19,26 +19,26 @@ const Controls: React.FC<IProps> = ({total, filter, handleCLick, clear}) => {
       <div className={styles.options}>
         <button type='button' 
           className={filter === 'all' ? styles.button_active : styles.button} 
-          onClick={() => handleCLick('all')}
+          onClick={() => setFilter('all')}
         >
           All
         </button>
         <button type='button' 
           className={filter === 'active' ? styles.button_active : styles.button}
-          onClick={() => handleCLick('active')}
+          onClick={() => setFilter('active')}
         >
           Active
         </button>
         <button type='button' 
           className={filter === 'completed' ? styles.button_active : styles.button}
-          onClick={() => handleCLick('completed')}
+          onClick={() => setFilter('completed')}
         >
           Completed
         </button>
       </div>
 
       <div className={styles.clear}>
-        <button type='button' onClick={clear}>Clear completed</button>
+        <button type='button' onClick={onClear}>Clear completed</button>
       </div>
     </div>
   )

@@ -1,7 +1,7 @@
 .item {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 16px;
   width: 100%;
   min-height: 60px;
   padding: 10px 10px 10px 16px;
@@ -15,14 +15,15 @@
   height: 30px;
 }
 
-.title {
+.title, .title_completed {
   font-size: 1rem;
+  width: 100%;
+  word-break: break-all;
 }
 
 .title_completed {
   text-decoration: line-through;
   opacity: .8;
-  font-size: 1rem;
 }
 
 .remove {
@@ -33,4 +34,11 @@
 .remove > button > img {
   width: 25px;
   height: 25px;
+}
+
+@media screen and (max-width: 600px) {
+  .title, .title_completed {
+    font-size: 1rem;
+    width: 70%;
+  }
 }
