@@ -1,15 +1,15 @@
-import {memo} from 'react';
+import {FormEvent, memo} from 'react';
 import styles from './style.module.css';
 
 interface IProps {
   value: string;
-  setValue: (arg: string) => void;
+  setValue: (value: string) => void;
   onSubmit: () => void;
 }
 
 const Form: React.FC<IProps> = ({value, setValue, onSubmit}) => {
 
-  function handleSubmit(e: any) {
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (value.trim()) {
       onSubmit();

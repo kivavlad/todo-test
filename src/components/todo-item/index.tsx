@@ -5,8 +5,8 @@ import styles from './style.module.css';
 
 interface ITodoItem {
   item: ITodo;
-  toggle: (arg: number) => void;
-  remove: (arg: number) => void;
+  toggle: (id: number) => void;
+  remove: (id: number) => void;
 }
 
 const TodoItem: React.FC<ITodoItem> = ({item, toggle, remove}) => {

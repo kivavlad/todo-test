@@ -1,5 +1,6 @@
 import {useState, useCallback} from 'react';
-import {useAppSelector, useAppDispatch} from '../store/hooks';
+import {useAppDispatch} from '../hooks/use-dispatch';
+import {useAppSelector} from '../hooks/use-selector';
 import {createTodo, toggleComplete, removeTodo, clearCompleted} from '../store/slices/todos';
 import Container from '../components/container';
 import Form from '../components/form';
@@ -18,13 +19,13 @@ const App: React.FC = () => {
 
   const callbacks = {
     // Создание нового todo
-    onCreate: useCallback(() => dispatch(createTodo(value)), [list, value]),
+    onCreate: useCallback(() => dispatch(createTodo(value)), [value]),
     // Переключатель выполнения
-    onToggle: useCallback((id: number) => dispatch(toggleComplete(id)), [list]),
+    onToggle: useCallback((id: number) => dispatch(toggleComplete(id)), []),
     // Удаление todo
-    onRemove: useCallback((id: number) => dispatch(removeTodo(id)), [list]),
+    onRemove: useCallback((id: number) => dispatch(removeTodo(id)), []),
     // Очистить все выполненные todo
-    onClear: useCallback(() => dispatch(clearCompleted()), [list]),
+    onClear: useCallback(() => dispatch(clearCompleted()), []),
   }
 
   const renders = {
