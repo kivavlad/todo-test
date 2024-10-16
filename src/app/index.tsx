@@ -1,31 +1,33 @@
 import {useState, useCallback} from 'react';
 import {useAppDispatch} from '../hooks/use-dispatch';
 import {useAppSelector} from '../hooks/use-selector';
-import {createTodo, toggleComplete, removeTodo, clearCompleted} from '../store/slices/todos';
+import {todoAction} from '../store/todos/slices/todos';
+import {ITodo, FilterTodos} from '../store/todos/types/todos';
+
 import Container from '../components/container';
 import Form from '../components/form';
 import Controls from '../components/controls'; 
 import List from '../components/list';
 import TodoItem from '../components/todo-item';
-import {ITodo} from '../types';
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
-  const {list} = useAppSelector(state => state.todos);
+  const {list, filter} = useAppSelector(state => state.todos);
   const [value, setValue] = useState<string>('');
-  const [filter, setFilter] = useState<string>('all');
-  const filteredTodos = filter === 'all' ? list : list.filter(todo => todo.completed === (filter === 'completed'));
+  const filteredTodos = filter === FilterTodos.ALL ? list : list.filter(todo => todo.completed === (filter === 'completed'));
   const total = filteredTodos.length;
 
   const callbacks = {
     // Создание нового todo
-    onCreate: useCallback(() => dispatch(createTodo(value)), [value]),
+    onCreate: useCallback(() => dispatch(todoAction.createTodo(value)), [value]),
     // Переключатель выполнения
-    onToggle: useCallback((id: number) => dispatch(toggleComplete(id)), []),
+    onToggle: useCallback((id: number) => dispatch(todoAction.toggleComplete(id)), []),
     // Удаление todo
-    onRemove: useCallback((id: number) => dispatch(removeTodo(id)), []),
+    onRemove: useCallback((id: number) => dispatch(todoAction.removeTodo(id)), []),
     // Очистить все выполненные todo
-    onClear: useCallback(() => dispatch(clearCompleted()), []),
+    onClear: useCallback(() => dispatch(todoAction.clearCompleted()), []),
+    // Изменение фильтра
+    onFilter: useCallback((param: FilterTodos) => dispatch(todoAction.setFilter(param)), [filter]),
   }
 
   const renders = {
@@ -37,7 +39,7 @@ const App: React.FC = () => {
   return (
     <Container>
       <Form value={value} setValue={setValue} onSubmit={callbacks.onCreate}/>
-      <Controls total={total} filter={filter} setFilter={setFilter} onClear={callbacks.onClear}/>
+      <Controls total={total} filter={filter} setFilter={callbacks.onFilter} onClear={callbacks.onClear}/>
       <List list={filteredTodos} renderItem={renders.item}/>
     </Container>
   )

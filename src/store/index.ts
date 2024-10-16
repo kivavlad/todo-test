@@ -1,9 +1,9 @@
 import {configureStore} from "@reduxjs/toolkit";
-import todoSlice from './slices/todos';
+import { todoReducer } from "./todos/slices/todos";
 
 const store = configureStore({
   reducer: {
-    todos: todoSlice,
+    todos: todoReducer,
   }
 })
 

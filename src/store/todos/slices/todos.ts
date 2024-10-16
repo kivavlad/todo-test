@@ -1,13 +1,15 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {generateCode} from "../../utils/utils";
-import {ITodo} from "../../types";
+import {generateCode} from "../../../utils/utils";
+import {ITodo, FilterTodos} from "../types/todos";
 
-type IState = {
+interface IState {
   list: ITodo[];
+  filter: FilterTodos;
 }
 
 const initialState: IState = {
   list: [],
+  filter: FilterTodos.ALL,
 }
 
 const todoSlice = createSlice({
@@ -35,9 +37,14 @@ const todoSlice = createSlice({
     // Удаление всех выполненных todo
     clearCompleted(state) {
       state.list = state.list.filter(todo => todo.completed !== true);
+    },
+
+    // Изменение фильтра
+    setFilter(state, action: PayloadAction<FilterTodos>) {
+      state.filter = action.payload;
     }
   }
 })
 
-export const {createTodo, toggleComplete, removeTodo, clearCompleted} = todoSlice.actions;
-export default todoSlice.reducer;
+export const { actions: todoAction } = todoSlice;
+export const { reducer: todoReducer } = todoSlice;
