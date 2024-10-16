@@ -33,7 +33,7 @@ const App: React.FC = () => {
   const renders = {
     item: useCallback((item: ITodo) => (
       <TodoItem item={item} toggle={callbacks.onToggle} remove={callbacks.onRemove} />
-    ), [callbacks.onToggle, callbacks.onRemove])
+    ), [])
   }
 
   return (

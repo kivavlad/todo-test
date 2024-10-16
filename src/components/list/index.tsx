@@ -1,10 +1,10 @@
-import {ReactNode, memo} from "react";
-import {ITodo} from "../../types";
+import {memo} from "react";
+import { ITodo } from "../../store/todos/types/todos";
 import styles from './style.module.css';
 
 interface IProps {
   list: ITodo[];
-  renderItem: (arg: ITodo) => ReactNode;
+  renderItem: (item: ITodo) => React.ReactNode;
 }
 
 const List: React.FC<IProps> = ({list, renderItem}) => {

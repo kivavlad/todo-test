@@ -1,5 +1,5 @@
-import {memo, useCallback} from "react";
-import {ITodo} from "../../types";
+import {memo} from "react";
+import {ITodo} from "../../store/todos/types/todos";
 import {checkboxIcon, emptyCheckboxIcon, removeIcon} from '../../assets';
 import styles from './style.module.css';
 
@@ -12,8 +12,8 @@ interface ITodoItem {
 const TodoItem: React.FC<ITodoItem> = ({item, toggle, remove}) => {
   
   const callbacks = {
-    onToggle: useCallback(() => toggle(item.id), [item.id]),
-    onRemove: useCallback(() => remove(item.id), [item.id]),
+    onToggle: () => toggle(item.id),
+    onRemove: () => remove(item.id),
   }
 
   return (
